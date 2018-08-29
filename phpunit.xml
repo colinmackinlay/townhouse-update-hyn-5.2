@@ -23,11 +23,16 @@
         </whitelist>
     </filter>
     <php>
-        <env name="APP_ENV" value="testing"/>
+        <env name="APP_ENV" value="local"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="MAIL_DRIVER" value="array"/>
+        <env name="DB_DATABASE" value="testing"/>
+        <env name="DB_USERNAME" value="laravel"/>
+        <env name="DB_PASSWORD" value="monkey"/>
+        <env name="TENANCY_AUTO_HOSTNAME_IDENTIFICATION" value="false"/>
+        <env name="TENANCY_DATABASE_AUTO_DELETE" value="true"/>
     </php>
 </phpunit>

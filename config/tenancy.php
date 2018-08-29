@@ -76,7 +76,7 @@ return [
          *
          * @info set to false to disable.
          */
-        'auto-create-tenant-directory' => true,
+        'auto-create-tenant-directory' => false,
 
         /**
          * Automatically rename the tenant directory when the random id of the
