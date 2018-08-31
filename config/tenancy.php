@@ -94,7 +94,7 @@ return [
          * @see
          * @info set to true to enable.
          */
-        'auto-delete-tenant-directory' => false,
+        'auto-delete-tenant-directory' => env('AUTO_DELETE_TENANT_DIRECTORY', false),
 
         /**
          * Time to cache websites in minutes. Set to false to disable.
@@ -208,7 +208,8 @@ return [
          *
          * @warn specify a valid fully qualified class name.
          */
-        'tenant-seed-class' => false,
+//        'tenant-seed-class' => false,
+        'tenant-seed-class' => TenantDatabaseSeeder::class,
 //      eg an admin seeder under `app/Seeders/AdminSeeder.php`:
 //        'tenant-seed-class' => App\Seeders\AdminSeeder::class,
 

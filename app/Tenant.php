@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Hyn\Tenancy\Contracts\Repositories\HostnameRepository;
 use Hyn\Tenancy\Contracts\Repositories\WebsiteRepository;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
  * @property Website website
  * @property Hostname hostname
  * @property User admin
-*/
+ */
 class Tenant
 {
     public function __construct(Website $website = null, Hostname $hostname = null, User $admin = null)
@@ -32,6 +32,15 @@ class Tenant
             app(HostnameRepository::class)->delete($tenant, true);
             app(WebsiteRepository::class)->delete($tenant->website, true);
             return "Tenant {$name} successfully deleted.";
+        }
+    }
+
+    public static function deleteByFqdn($fqdn)
+    {
+        if ($tenant = Hostname::where('fqdn', $fqdn)->firstOrFail()) {
+            app(HostnameRepository::class)->delete($tenant, true);
+            app(WebsiteRepository::class)->delete($tenant->website, true);
+            return "Tenant {$fqdn} successfully deleted.";
         }
     }
 

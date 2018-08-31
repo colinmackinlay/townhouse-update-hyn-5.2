@@ -3,8 +3,8 @@
 namespace Tests;
 
 use App\Http\Middleware\VerifyCsrfToken;
-use App\Models\Tenant;
-use App\Models\User;
+use App\Tenant;
+use App\User;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -40,7 +40,7 @@ abstract class TenantAwareTestCase extends TestCase
     protected function tearDown()
     {
         foreach ($this->tenants as $tenant) {
-            $tenant->delete();
+            $tenant->deleteByFqdn($tenant->hostname->fqdn);
         }
         parent::tearDown();
     }
@@ -59,7 +59,7 @@ abstract class TenantAwareTestCase extends TestCase
 
     protected function registerTenant($tenantName = 'test'): Tenant
     {
-        $tenant = Tenant::createFrom($tenantName, "admin@{$tenantName}.com", 'secret');
+        $tenant = Tenant::registerTenant($tenantName, "admin@{$tenantName}.com", 'secret');
         array_push($this->tenants, $tenant);
 
         return $tenant;

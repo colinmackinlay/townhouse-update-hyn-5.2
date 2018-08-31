@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Tenant;
+use App\Tenant;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Notification;
 use Tests\TenantAwareTestCase;

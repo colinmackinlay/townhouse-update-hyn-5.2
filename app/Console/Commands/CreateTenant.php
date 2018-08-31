@@ -2,10 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Tenant;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Hash;
 use App\Notifications\TenantCreated;
+use App\Tenant;
+use Illuminate\Console\Command;
 
 class CreateTenant extends Command
 {
@@ -27,7 +26,7 @@ class CreateTenant extends Command
         $tenant = Tenant::registerTenant($name, $email, $password);
         $this->info("Tenant '{$name}' is created and is now accessible at {$tenant->hostname->fqdn}");
 
-        //$tenant->admin->notify(new TenantCreated($tenant->hostname));
+        $tenant->admin->notify(new TenantCreated($tenant->hostname));
         $this->info("Admin {$email} can log in using password {$password}");
     }
 }

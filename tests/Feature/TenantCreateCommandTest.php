@@ -3,10 +3,9 @@
 namespace Tests\Feature;
 
 use App\Notifications\TenantCreated;
-use App\Models\Tenant;
-use App\Models\User;
+use App\Tenant;
+use App\User;
 use Hyn\Tenancy\Models\Hostname;
-use Hyn\Tenancy\Models\Website;
 use Illuminate\Support\Facades\Notification;
 use Tests\TenantAwareTestCase;
 
