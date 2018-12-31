@@ -14,7 +14,7 @@ class DeleteTenant extends Command
     {
         // because this is a destructive command, we'll only allow to run this command
         // if you are on the local environment
-        if (!app()->isLocal()  || app()->runningUnitTests()) {
+        if (!app()->isLocal()  &&  !app()->runningUnitTests()) {
             $this->error('This command is only available on the local environment.');
 
             return;
